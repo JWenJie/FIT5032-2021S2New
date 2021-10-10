@@ -29,5 +29,9 @@ namespace FIT5032_2021S2New.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Event_Type> Event_Types { get; set; }
+        public DbSet<Store> Stores { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

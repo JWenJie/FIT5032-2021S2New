@@ -1,0 +1,51 @@
+﻿@model FIT5032_2021S2New.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Event_Type.Event_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event_Type.Event_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Store.Store_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Store.Store_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Start_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.End_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.End_time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Event_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FIT5032_2021S2New.Models.Store>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Store_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Store_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact_number)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Store_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Store_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact_number)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Store_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Store_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Store_id })
+        </td>
+    </tr>
+}
+
+</table>

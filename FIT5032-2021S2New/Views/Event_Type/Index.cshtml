@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FIT5032_2021S2New.Models.Event_Type>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Event_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Event_type_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Event_type_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Event_type_id })
+        </td>
+    </tr>
+}
+
+</table>
