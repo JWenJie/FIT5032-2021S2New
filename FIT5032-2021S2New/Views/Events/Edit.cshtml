@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Event</h4>
         <hr />
@@ -37,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Start_time, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Start_time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Start_time, new { htmlAttributes = new { @class = "form-control", id = "datetimepicker3" } })
                 @Html.ValidationMessageFor(model => model.Start_time, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.End_time, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.End_time, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.End_time, new { htmlAttributes = new { @class = "form-control", id = "datetimepicker4" } })
                 @Html.ValidationMessageFor(model => model.End_time, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,4 +64,19 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datetimepicker")
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker3').datetimepicker({
+            format: "dddd, DD MMM YYYY hh:mm A"
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: "dddd, DD MMM YYYY hh:mm A"
+        });
+    });
+</script>
 }

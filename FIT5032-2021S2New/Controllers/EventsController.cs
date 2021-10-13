@@ -37,6 +37,7 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Events/Create
+        [Authorize(Roles = "Manager, Admin")]
         public ActionResult Create()
         {
             ViewBag.Event_type_id = new SelectList(db.Event_Types, "Event_type_id", "Event_name");
@@ -64,6 +65,7 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Events/Edit/5
+        [Authorize(Roles = "Manager, Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +101,7 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Events/Delete/5
+        [Authorize(Roles = "Manager, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

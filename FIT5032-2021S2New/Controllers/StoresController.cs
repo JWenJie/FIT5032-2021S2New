@@ -36,9 +36,12 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Stores/Create
+        [Authorize]
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("Admin"))
+                return View();
+            return HttpNotFound();
         }
 
         // POST: Stores/Create
@@ -59,6 +62,7 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Stores/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +94,7 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Stores/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

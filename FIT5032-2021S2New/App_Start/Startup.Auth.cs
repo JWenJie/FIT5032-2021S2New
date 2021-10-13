@@ -51,18 +51,18 @@ namespace FIT5032_2021S2New
             //    clientSecret: "");
 
             //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            //   consumerKey: "a",
+            //   consumerSecret: "ab");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "625014558632356",
+               appSecret: "81c8f311f5ff45fb07095dcd1b9f0423");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "87015351901-i3djkg77368jln2k2i113cglf4ctbnvl.apps.googleusercontent.com",
+                ClientSecret = "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"
+            }); 
         }
     }
 }

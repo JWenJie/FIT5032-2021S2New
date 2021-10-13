@@ -36,6 +36,7 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Event_Type/Create
+        [Authorize(Roles = "Manager, Admin")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +60,7 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Event_Type/Edit/5
+        [Authorize(Roles = "Manager, Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +92,7 @@ namespace FIT5032_2021S2New.Controllers
         }
 
         // GET: Event_Type/Delete/5
+        [Authorize(Roles = "Manager, Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

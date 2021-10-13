@@ -23,9 +23,11 @@ namespace FIT5032_2021S2New.Models
         public Event_Type Event_Type { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0: dddd, dd MMM yyyy hh:mm tt}")]
         public DateTime Start_time { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0: dddd, dd MMM yyyy hh:mm tt}")]
         public DateTime End_time { get; set; }  
     }
 }
