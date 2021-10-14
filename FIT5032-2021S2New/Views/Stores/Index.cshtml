@@ -2,10 +2,17 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+    #map{
+        height:500px;
+    }
+</style>
+
+<h2>Stores</h2>
+
+<div id="map"></div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -24,23 +31,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Store_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Store_address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contact_number)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Store_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Store_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Store_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Store_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Store_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact_number)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Store_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Store_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Store_id })
+            </td>
+        </tr>
+    }
 
 </table>
+        
+@section Scripts{
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    @Scripts.Render("~/bundles/map")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnbTPgiYNl2eaMnYENurEnOLQ6M8sxGWo&callback=initMap&libraries=&v=weekly" async></script>
+}

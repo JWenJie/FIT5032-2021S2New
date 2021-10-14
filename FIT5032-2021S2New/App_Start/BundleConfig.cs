@@ -27,10 +27,15 @@ namespace FIT5032_2021S2New
                 "~/Scripts/moment.js",
                 "~/Scripts/bootstrap-datetimepicker.min.js"));
 
+            //Map
+            bundles.Add(new ScriptBundle("~/bundles/map").Include(
+                "~/Scripts/map.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-datetimepicker.min.css"));
+
         }
     }
 }

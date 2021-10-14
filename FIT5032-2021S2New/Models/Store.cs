@@ -16,11 +16,11 @@ namespace FIT5032_2021S2New.Models
         public string Store_name { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(100)]
         public string Store_address { get; set; }
 
         [Required]
-        [RegularExpression("^[0-9]{10}$")]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Not a valid phone number")]
         public int Contact_number { get; set; }
     }
 }

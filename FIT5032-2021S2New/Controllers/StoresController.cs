@@ -128,5 +128,11 @@ namespace FIT5032_2021S2New.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult GetStores()
+        {
+            var stores = db.Stores.ToList();
+            return new JsonResult { Data = stores, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
     }
 }
