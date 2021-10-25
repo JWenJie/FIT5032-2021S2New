@@ -5,56 +5,118 @@
 }
 
 <style>
-    #map{
-        height:500px;
+    #container {
+        height: 500px;
+        display: flex;
     }
+
+    #sidebar {
+        flex-basis: 15rem;
+        flex-grow: 1;
+        padding: 1rem;
+        max-width: 30rem;
+        height: 100%;
+        box-sizing: border-box;
+        overflow: auto;
+    }
+
+    #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+    }
+
+    #map {
+        flex: auto;
+    }
+
+    #sidebar {
+        flex: 0 1 auto;
+        padding: 0;
+    }
+
+        #sidebar > div {
+            padding: 0.5rem;
+        }
 </style>
 
 <h2>Stores</h2>
 
-<div id="map"></div>
+<div id="container">
+    <div id="map"></div>
+    <div id="sidebar"></div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Store_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Store_address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact_number)
-        </th>
-        <th></th>
-    </tr>
+<div>
+    <h3>Choose your route</h3>
+    <div class="row" style="margin:20px;">
+        <label for="start" class="col-md-2 control-label">From</label>
+        <input type="text" id="start" class="col-md-4 form-control" />
 
-    @foreach (var item in Model)
-    {
+        <label for="end" class="col-md-2 control-label">End</label>
+        <select id="end" class="col-md-4 form-control">
+            @foreach (var store in Model)
+            {
+                <option value="@store.Store_address">@store.Store_name</option>
+            }
+        </select>
+    </div>
+    <div class="row" style="margin:20px;">
+        <label for="mode" class="col-md-2 control-label">Travel Mode</label>
+        <select id="mode" class="col-md-4 form-control">
+            <option value="DRIVING">Driving</option>
+            <option value="WALKING">Walking</option>
+            <option value="BICYCLING">Bicycling</option>
+            <option value="TRANSIT">Transit</option>
+        </select>
+        <input type="submit" value="Go" class="btn btn-default col-md-offset-2 col-md-2" id="get-direction" />
+    </div>
+</div>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Customer"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Store_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Store_address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contact_number)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Store_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Store_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Store_id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Store_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Store_address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact_number)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact_number)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Store_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Store_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Store_id })
+                </td>
+            </tr>
+        }
+    </table>
+}
+
 @section Scripts{
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     @Scripts.Render("~/bundles/map")
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnbTPgiYNl2eaMnYENurEnOLQ6M8sxGWo&callback=initMap&libraries=&v=weekly" async></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnbTPgiYNl2eaMnYENurEnOLQ6M8sxGWo&callback=initMap&libraries=places&v=weekly" async></script>
 }

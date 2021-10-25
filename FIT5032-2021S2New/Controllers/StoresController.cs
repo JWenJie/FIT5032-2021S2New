@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_2021S2New.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FIT5032_2021S2New.Controllers
 {
@@ -31,6 +32,16 @@ namespace FIT5032_2021S2New.Controllers
             if (store == null)
             {
                 return HttpNotFound();
+            }
+            store.Ratings = db.Ratings.Include("User").Where(r => r.Store_id == store.Store_id).ToList();
+            if (store.Ratings.Count != 0)
+            {
+                var total = 0;
+                foreach(var rate in store.Ratings)
+                {
+                    total += rate.Rate;
+                }
+                store.AvgRating =(decimal) total / store.Ratings.Count;
             }
             return View(store);
         }
@@ -129,10 +140,26 @@ namespace FIT5032_2021S2New.Controllers
             base.Dispose(disposing);
         }
 
-        public JsonResult GetStores()
+        public JsonResult ListStores()
         {
             var stores = db.Stores.ToList();
             return new JsonResult { Data = stores, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult RateStore(int Store_id,string Comment,int Rate)
+        {
+            try {
+                var userId = User.Identity.GetUserId();
+                var rate = new Rating { Store_id = Store_id, UserId = userId, Comment = Comment, Rate = Rate };
+                db.Ratings.Add(rate);
+                db.SaveChanges();
+            }
+            catch(Exception exception) {
+                Console.WriteLine(exception.Message);
+            }
+            return RedirectToAction($"Details/{Store_id}");
         }
     }
 }
